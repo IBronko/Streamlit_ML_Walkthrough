@@ -17,6 +17,7 @@ seaborn = "*"
 scipy = "*"
 wordcloud = "*"
 sklearn = "*"
+streamlit = "*"
 
 [dev-packages]
 notebook = "*"
