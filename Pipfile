@@ -18,6 +18,7 @@ scipy = "*"
 wordcloud = "*"
 sklearn = "*"
 streamlit = "*"
+plotly = "==5.8.0"
 
 [dev-packages]
 notebook = "*"

@@ -3,3 +3,4 @@ data/.DS_Store
 eda/.DS_Store
 sklearn_pipeline/.DS_Store
 .DS_Store
+notebooks/eda/.ipynb_checkpoints/basic_data_cleaning_and_eda-checkpoint.ipynb

@@ -10,6 +10,10 @@ import lxml
 from tqdm import tqdm
 
 def app():
+    
+    st.write("Session State")
+    st.write(st.session_state)
+    
     st.title("Data Acquisition")
 
     st.write("This little script demonstrates how to run a Beautifulsoup webscraper to collect data.")
