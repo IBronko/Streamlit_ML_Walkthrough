@@ -1,4 +1,4 @@
 import streamlit as st
 
 def app():
-    st.title("2. Exploratory Data Analysis")
+    st.title("Exploratory Data Analysis")

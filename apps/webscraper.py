@@ -10,7 +10,7 @@ import lxml
 from tqdm import tqdm
 
 def app():
-    st.title("1. Data Acquisition")
+    st.title("Data Acquisition")
 
     st.write("This little script demonstrates how to run a Beautifulsoup webscraper to collect data.")
 
@@ -135,4 +135,4 @@ def app():
         )
 
     else:
-        st.write("No data found. Please select at least one company.")
+        st.error("No data found. Please select at least one company.")
