@@ -6,21 +6,9 @@ class MultiApp:
         self.apps = []
 
     def add_app(self, title, func):
-        self.apps.append({
-            "title": title,
-            "function": func
-        })
+        self.apps.append({"title": title, "function": func})
 
     def run(self):
-        # app = st.sidebar.radio(
-        app = st.sidebar.selectbox(
-            'Navigation',
-            self.apps,
-            format_func=lambda app: app['title'])
-        
-        st.sidebar.markdown("""
-        This multi-page app is using the 
-        [streamlit-multiapps](https://github.com/upraneelnihar/streamlit-multiapps) 
-        framework.""")
-
+        # app = st.sidebar.radio()
+        app = st.sidebar.selectbox('Navigation', self.apps, format_func=lambda app: app['title'])
         app['function']()
