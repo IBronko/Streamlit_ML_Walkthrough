@@ -1,6 +1,6 @@
 import streamlit as st
 
-def app():
+def training_app():
     
     st.write("Session State")
     st.write(st.session_state)

@@ -1,11 +1,16 @@
 import streamlit as st
-from multiapp import MultiApp
-from apps import start, webscraper, eda, training 
+from apps.start import start_app
+from apps.webscraper import webscraper_app
+from apps.eda import eda_app
+from apps.training import training_app
 
-app = MultiApp()
-app.add_app("Project Description", start.app)
-app.add_app("1. Data Acquisition", webscraper.app)
-app.add_app("2. Exploratory Data Analysis", eda.app)
-app.add_app("3. Training", training.app)
+page = st.sidebar.selectbox("Navigation", ("Project Description", "Data Acquisition", "EDA", "Model Training"))
 
-app.run()
+if page == "Project Description":
+    start_app()
+elif page == "Data Acquisition":
+    webscraper_app()
+elif page == "EDA":
+    eda_app()
+elif page == "Model Training":
+    training_app()

@@ -9,7 +9,7 @@ import requests
 import lxml
 from tqdm import tqdm
 
-def app():
+def webscraper_app():
     
     st.write("Session State")
     st.write(st.session_state)
