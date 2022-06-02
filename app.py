@@ -16,8 +16,21 @@ st.set_page_config(
      }
  )
 
+#####################################
+# Initialize default session states
+#####################################
+
+button_status_list = ["show_import", "show_clean"]
+
+for status in button_status_list:
+    if status not in st.session_state:
+        st.session_state[status] = False
 
 page = st.sidebar.selectbox("Navigation", ("Project Description", "Data Acquisition", "EDA", "Model Training"))
+
+#####################################
+# Import apps
+#####################################
 
 if page == "Project Description":
     start_app()
