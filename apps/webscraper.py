@@ -16,7 +16,9 @@ def webscraper_app():
     
     st.title("Data Acquisition")
 
-    st.write("This little script demonstrates how to run a Beautifulsoup webscraper to collect data.")
+    st.write("""This little script demonstrates how to run a Beautiful 
+             Soup webscraper to collect publicly available data for non-commercial purposes
+             from an employer review platform.""")
 
     ##########################################################################
     # Define user header for http request (request might be blocked otherwise)
