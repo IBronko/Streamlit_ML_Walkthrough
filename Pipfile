@@ -17,8 +17,9 @@ seaborn = "*"
 scipy = "*"
 wordcloud = "*"
 sklearn = "*"
-streamlit = "*"
 plotly = "==5.8.0"
+streamlit = "*"
+streamlit-lottie = "*"
 
 [dev-packages]
 notebook = "*"

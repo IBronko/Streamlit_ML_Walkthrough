@@ -134,7 +134,7 @@ def webscraper_app():
         csv = convert_df(df)
 
         st.download_button(
-            label="Download data as .csv file",
+            label="Download csv file",
             data=csv,
             file_name='employer_evaluation.csv',
             mime='text/csv',

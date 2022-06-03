@@ -27,7 +27,7 @@ def load_raw_data():
 # Basic data cleaning
 ####################################
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 def load_cleaned_data():
     df_clean = load_raw_data()
     
@@ -121,7 +121,7 @@ def plot_pieplot(df):
             names=y, 
             hole=.3, 
             color_discrete_sequence=px.colors.sequential.Emrld)
-    return st.plotly_chart(fig_pie, use_container_width=True)
+    return fig_pie
 
 ####################################
 # Histogram
@@ -141,7 +141,7 @@ def plot_histogram(df):
 
     plt.suptitle("Feature Distributions (Scale: 1 - 5)", fontsize=20)
     plt.subplots_adjust(hspace=0.2, wspace=0.5)
-    return st.pyplot(plt, clear_figure=True)
+    return plt
 
 ####################################
 # Correlation Heatmap
@@ -153,7 +153,7 @@ def plot_corr_heatmap(df):
                         text_auto=True, 
                         aspect="auto", 
                         color_continuous_scale=px.colors.sequential.Emrld)
-    return st.plotly_chart(corr_fig, use_container_width=True)
+    return corr_fig
 
 ####################################
 # Parallel Coordinate Plot
@@ -164,7 +164,7 @@ def plot_para_coordinate(df):
     parall_fig = px.parallel_coordinates(
                                         df_fig,color="overall_number", 
                                         color_continuous_scale=px.colors.diverging.Tealrose)
-    return st.plotly_chart(parall_fig, use_container_width=True)
+    return parall_fig
 
 ####################################
 # Scatter Plot
@@ -185,7 +185,7 @@ def plot_scatter(df):
                         xaxis = dict(tickmode = 'linear', tick0 = 0, dtick = 1),
                         yaxis = dict(tickmode = 'linear', tick0 = 0, dtick = 1)
                         )
-    return st.plotly_chart(scatter_fig, use_container_width=True)
+    return scatter_fig
 
 ####################################
 # Wordcloud
@@ -206,4 +206,4 @@ def plot_wordcloud(df):
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.margins(x=1, y=1)
-    return st.pyplot(plt, clear_figure=True)
+    return plt
