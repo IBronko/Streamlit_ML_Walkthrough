@@ -122,6 +122,18 @@ def eda_app():
         
         st.dataframe(df_clean.describe().T.round(0))
         
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)
+        
     elif step == "Pie plot":
         
         ####################################
@@ -130,6 +142,18 @@ def eda_app():
         st.header("Pie plot")
         
         st.plotly_chart(plot_pieplot(df_clean), use_container_width=True)
+        
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)
            
     elif step == "Histograms":       
      
@@ -140,6 +164,18 @@ def eda_app():
         
         st.pyplot(plot_histogram(df_clean), clear_figure=True)
         
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)
+        
     elif step == "Heatmap":    
         
         ####################################
@@ -147,7 +183,19 @@ def eda_app():
         ####################################
         st.header("Correlation Heatmap")
         
-        st.plotly_chart(plot_corr_heatmap(df_clean) , use_container_width=True)   
+        st.plotly_chart(plot_corr_heatmap(df_clean) , use_container_width=True)
+        
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)   
         
     elif step == "Parallel coordinates":    
         
@@ -166,6 +214,18 @@ def eda_app():
             st.plotly_chart(plot_para_coordinate(df_clean, p_plot_options), use_container_width=True)
         else:
             st.error("Select at least one features to plot.")
+            
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)
         
     elif step == "Scatter plot":      
         
@@ -185,7 +245,19 @@ def eda_app():
                                 "Select y-axis feature",
                                 (feature for feature in df_clean.select_dtypes("number").columns), index=1, key="y_axis")
             
-        st.plotly_chart(plot_scatter(df_clean, x_option, y_option), use_container_width=True)    
+        st.plotly_chart(plot_scatter(df_clean, x_option, y_option), use_container_width=True)
+        
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)    
         
     elif step == "Word cloud":      
         
@@ -194,4 +266,16 @@ def eda_app():
         ####################################
         st.header("Word cloud")
         
-        st.pyplot(plot_wordcloud(df_clean), clear_figure=True)  
+        st.pyplot(plot_wordcloud(df_clean), clear_figure=True)
+        
+        with st.expander("See explanation"):
+            st.markdown("""
+                            This table shows a small fraction of the data, that has been scrapped with Beautiful soup.
+                            
+                            The next steps include the following preprocessing tasks:
+                            
+                            - :scissors: Find and drop columns with many missing values
+                            - :pencil2: Translate german column lables to english
+                            - :pencil2: Translate target values in column 'Overall' to english
+                            - :hammer: Add encoded target variable (1s and 0s) in an additional column
+                            """)  
