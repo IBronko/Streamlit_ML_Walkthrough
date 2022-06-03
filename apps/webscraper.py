@@ -11,7 +11,6 @@ from tqdm import tqdm
 
 def webscraper_app():
     
-    st.write("Session State")
     st.write(st.session_state)
     
     st.title("Data Acquisition")
@@ -43,102 +42,110 @@ def webscraper_app():
     exceptions_list = list()
     page_count = 2
 
-    with st.spinner('Scraping data...'):
-        for employer in tqdm(employers, desc="Scraping data progress"):
-            try:
-                for i in range(1, page_count, 1):
-                    url = f"https://www.kununu.com/de/{employer}/kommentare/{i}"
-                    source = requests.get(url, headers=headers).text
-                    soup = BeautifulSoup(source, 'lxml')
+    def change_status_scraping():
+        st.session_state.start_scraping_button = True 
 
-                    articles = soup.find_all("div", class_="index__reviewBlock__27gnB")
+    start_scraping_button = st.button("Start scraping", on_click=change_status_scraping)
 
-                    for article in articles:
-                        sample = {}
+    if start_scraping_button:
 
-                        categories = article.find_all("h4")
-                        scores = article.find_all("span", class_="index__stars__2ads4 index__medium__1wpWb index__stars__3lgvx")
+        with st.spinner('Scraping data...'):
+            for employer in tqdm(employers, desc="Scraping data progress"):
+                try:
+                    for i in range(1, page_count, 1):
+                        url = f"https://www.kununu.com/de/{employer}/kommentare/{i}"
+                        source = requests.get(url, headers=headers).text
+                        soup = BeautifulSoup(source, 'lxml')
 
-                        sample["Employer"] = employer
-                        sample["Time"] = article.find("time", class_="p-tiny-regular text-dark-63").text
-                        sample["Comment"] = article.find("h3", class_="index__title__2uQec h3-semibold").text
-                        sample["Overall"] = article.find("span", class_="p-tiny-bold").text
+                        articles = soup.find_all("div", class_="index__reviewBlock__27gnB")
 
-                        for a, b in zip(reversed(categories), reversed(scores)):
-                            sample[a.text] = int(b.attrs["data-score"])
+                        for article in articles:
+                            sample = {}
 
-                        data.append(sample)
-        
-            except Exception as e:
-                exception_dict = {}
-                exception_dict[employer] = e
-                exceptions_list.append(exception_dict) 
-                
-        if len(exceptions_list) > 0:
-            st.error(f"Scraping Errors: {exceptions_list}")
+                            categories = article.find_all("h4")
+                            scores = article.find_all("span", class_="index__stars__2ads4 index__medium__1wpWb index__stars__3lgvx")
 
-    st.success('Scraping job finished!')
+                            sample["Employer"] = employer
+                            sample["Time"] = article.find("time", class_="p-tiny-regular text-dark-63").text
+                            sample["Comment"] = article.find("h3", class_="index__title__2uQec h3-semibold").text
+                            sample["Overall"] = article.find("span", class_="p-tiny-bold").text
 
-    ################################################################## 
-    # Convert list to pandas DataFrame and translate german to english
-    ################################################################## 
+                            for a, b in zip(reversed(categories), reversed(scores)):
+                                sample[a.text] = int(b.attrs["data-score"])
 
-    if len(data) > 0:
+                            data.append(sample)
+            
+                except Exception as e:
+                    exception_dict = {}
+                    exception_dict[employer] = e
+                    exceptions_list.append(exception_dict) 
+                    
+            if len(exceptions_list) > 0:
+                st.error(f"Scraping Errors: {exceptions_list}")
 
-        df = pd.DataFrame(data)
+        st.success('Scraping job finished!')
 
-        df = df.rename(columns={
-            'Employer': "employer",
-            'Time': "record_date",
-            'Comment': "comment",
-            'Overall': "overall_result",
-            'Interessante Aufgaben': 'interesting_tasks', 
-            'Gleichberechtigung': 'equality',
-            'Kommunikation': "communication",
-            'Arbeitsbedingungen': "working_conditions",
-            'Vorgesetztenverhalten': "supervisor_behavior",
-            'Umgang mit älteren Kollegen': "dealing_w_older_colleagues",
-            'Kollegenzusammenhalt': "colleague_cohesion",
-            'Umwelt-/Sozialbewusstsein': "environmental_social awareness",
-            'Gehalt/Sozialleistungen': "salary_benefits",
-            'Karriere/Weiterbildung': "career_training",
-            'Work-Life-Balance': "work_life_balance",
-            'Image': "image",
-            'Arbeitsatmosphäre': "work_atmosphere",
-            'Respekt': "respect",
-            'Variation': "variation",
-            'Spaßfaktor': "fun_factor",
-            'Aufgaben/Tätigkeiten': "tasks",
-            'Die Ausbilder': "trainer",
-            'Ausbildungsvergütung': "apprenticeship_pay",
-            'Arbeitszeiten': "working_hours",
-            'Karrierechancen': "career_opportunities",
-            'Arbeitgeber-Kommentar': "employer_comment",
-            'Herausforderung': "challenge",
-            'Arbeitgeber-Kommentare': "employer_comments"   
-        })
+        ################################################################## 
+        # Convert list to pandas DataFrame and translate german to english
+        ################################################################## 
 
-        df.overall_result.replace("Nicht empfohlen", "not_recommended", inplace=True)
-        df.overall_result.replace("Empfohlen", "recommended", inplace=True)
+        if len(data) > 0:
 
-        st.write(df)
-        st.caption("The result size has been limited to 10 samples per selected company.")
+            df = pd.DataFrame(data)
 
-        #################### 
-        # Download csv file
-        ####################
+            df = df.rename(columns={
+                'Employer': "employer",
+                'Time': "record_date",
+                'Comment': "comment",
+                'Overall': "overall_result",
+                'Interessante Aufgaben': 'interesting_tasks', 
+                'Gleichberechtigung': 'equality',
+                'Kommunikation': "communication",
+                'Arbeitsbedingungen': "working_conditions",
+                'Vorgesetztenverhalten': "supervisor_behavior",
+                'Umgang mit älteren Kollegen': "dealing_w_older_colleagues",
+                'Kollegenzusammenhalt': "colleague_cohesion",
+                'Umwelt-/Sozialbewusstsein': "environmental_social awareness",
+                'Gehalt/Sozialleistungen': "salary_benefits",
+                'Karriere/Weiterbildung': "career_training",
+                'Work-Life-Balance': "work_life_balance",
+                'Image': "image",
+                'Arbeitsatmosphäre': "work_atmosphere",
+                'Respekt': "respect",
+                'Variation': "variation",
+                'Spaßfaktor': "fun_factor",
+                'Aufgaben/Tätigkeiten': "tasks",
+                'Die Ausbilder': "trainer",
+                'Ausbildungsvergütung': "apprenticeship_pay",
+                'Arbeitszeiten': "working_hours",
+                'Karrierechancen': "career_opportunities",
+                'Arbeitgeber-Kommentar': "employer_comment",
+                'Herausforderung': "challenge",
+                'Arbeitgeber-Kommentare': "employer_comments"   
+            })
 
-        def convert_df(df):
-            return df.to_csv().encode('utf-8')
-        
-        csv = convert_df(df)
+            df.overall_result.replace("Nicht empfohlen", "not_recommended", inplace=True)
+            df.overall_result.replace("Empfohlen", "recommended", inplace=True)
 
-        st.download_button(
-            label="Download csv file",
-            data=csv,
-            file_name='employer_evaluation.csv',
-            mime='text/csv',
-        )
+            st.dataframe(df)
+            st.text(f"Number of columns: {df.shape[1]}\nNumber of rows (samples): {df.shape[0]}")
+            st.caption("The result size has been limited to 10 samples per selected company.")
 
-    else:
-        st.error("No data found. Please select at least one company.")
+            #################### 
+            # Download csv file
+            ####################
+
+            def convert_df(df):
+                return df.to_csv().encode('utf-8')
+            
+            csv = convert_df(df)
+
+            st.download_button(
+                label="Download csv file",
+                data=csv,
+                file_name='employer_evaluation.csv',
+                mime='text/csv',
+            )
+
+        else:
+            st.error("No data found. Please select at least one company.")

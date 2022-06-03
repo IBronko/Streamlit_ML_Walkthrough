@@ -8,7 +8,6 @@ from apps.helper_functions import *
 
 def eda_app():
      
-    st.write("Session State")
     st.write(st.session_state)
     
     st.title("Explanatory data analysis")
@@ -160,10 +159,13 @@ def eda_app():
         p_plot_options = st.multiselect(
                                         "Select features to plot",
                                         [feature for feature in df_clean.select_dtypes("number").columns],
-                                        ["salary_benefits", "dealing_w_older_colleagues", "overall_number"]
+                                        ["salary_benefits", "dealing_w_older_colleagues"]
                                         )
         
-        st.plotly_chart(plot_para_coordinate(df_clean, p_plot_options), use_container_width=True)
+        if len(p_plot_options) >=1:
+            st.plotly_chart(plot_para_coordinate(df_clean, p_plot_options), use_container_width=True)
+        else:
+            st.error("Select at least one features to plot.")
         
     elif step == "Scatter plot":      
         
@@ -183,7 +185,7 @@ def eda_app():
                                 "Select y-axis feature",
                                 (feature for feature in df_clean.select_dtypes("number").columns), index=1, key="y_axis")
             
-        st.plotly_chart(plot_scatter(df_clean, x_option, y_option), use_container_width=True)
+        st.plotly_chart(plot_scatter(df_clean, x_option, y_option), use_container_width=True)    
         
     elif step == "Word cloud":      
         

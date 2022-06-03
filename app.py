@@ -22,7 +22,7 @@ st.set_page_config(
 # Initialize default session states
 #####################################
 
-button_status_list = ["show_import", "show_clean"]
+button_status_list = ["start_scrapping_button"]
 
 for status in button_status_list:
     if status not in st.session_state:

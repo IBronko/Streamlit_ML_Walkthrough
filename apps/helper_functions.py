@@ -160,9 +160,12 @@ def plot_corr_heatmap(df):
 ####################################
 
 def plot_para_coordinate(df, plot_options):
+    if "overall_number" not in plot_options:
+        plot_options.append("overall_number")
     df_fig = df[plot_options]
     parall_fig = px.parallel_coordinates(
-                                        df_fig,color="overall_number", 
+                                        df_fig,
+                                        color="overall_number", 
                                         color_continuous_scale=px.colors.diverging.Tealrose)
     return parall_fig
 
