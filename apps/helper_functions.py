@@ -159,8 +159,8 @@ def plot_corr_heatmap(df):
 # Parallel Coordinate Plot
 ####################################
 
-def plot_para_coordinate(df):
-    df_fig = df[["salary_benefits", "supervisor_behavior", "dealing_w_older_colleagues", "overall_number"]]
+def plot_para_coordinate(df, plot_options):
+    df_fig = df[plot_options]
     parall_fig = px.parallel_coordinates(
                                         df_fig,color="overall_number", 
                                         color_continuous_scale=px.colors.diverging.Tealrose)
@@ -170,21 +170,23 @@ def plot_para_coordinate(df):
 # Scatter Plot
 ####################################
 
-def plot_scatter(df):
-    df_fig = df[["salary_benefits", "supervisor_behavior", "dealing_w_older_colleagues", "overall_number"]]
+def plot_scatter(df, x_option, y_option):
     scatter_fig = px.scatter(
-                            df_fig, 
-                            x=df_fig.salary_benefits, 
-                            y=df_fig.supervisor_behavior, 
-                            color=df_fig.overall_number, 
+                            df, 
+                            x=x_option, 
+                            y=y_option, 
+                            color=df.overall_number, 
                             color_continuous_scale=px.colors.sequential.Emrld
                             )
 
     scatter_fig.update_layout(
                         {"plot_bgcolor": "rgba(0, 0, 0, 0)","paper_bgcolor": "rgba(0, 0, 0, 0)"} ,                   
                         xaxis = dict(tickmode = 'linear', tick0 = 0, dtick = 1),
-                        yaxis = dict(tickmode = 'linear', tick0 = 0, dtick = 1)
+                        yaxis = dict(tickmode = 'linear', tick0 = 0, dtick = 1),
                         )
+    
+    scatter_fig.update_traces(marker=dict(size=20))
+    
     return scatter_fig
 
 ####################################
