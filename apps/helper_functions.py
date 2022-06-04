@@ -126,7 +126,7 @@ def plot_pieplot(df):
 ####################################
 # Histogram
 ####################################
-
+st.cache
 def plot_histogram(df):
     numerical_columns = df.select_dtypes("number").columns
     sns.set(style="white")

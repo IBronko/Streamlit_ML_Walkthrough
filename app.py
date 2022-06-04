@@ -22,7 +22,7 @@ st.set_page_config(
 # Initialize default session states
 #####################################
 
-button_status_list = ["start_scrapping_button"]
+button_status_list = ["start_scraping_button"]
 
 for status in button_status_list:
     if status not in st.session_state:
@@ -53,6 +53,7 @@ with st.sidebar:
         )
 
     st.markdown("Code: [GitHub](https://github.com/IBronko/Streamlit_ML_Walkthrough.git)")
+    st.write(st.session_state)
 
 #####################################
 # Import apps

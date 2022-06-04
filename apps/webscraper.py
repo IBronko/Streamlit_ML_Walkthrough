@@ -11,8 +11,6 @@ from tqdm import tqdm
 
 def webscraper_app():
     
-    st.write(st.session_state)
-    
     st.title("Data Acquisition")
 
     st.write("""This little script demonstrates how to run a Beautiful 
@@ -148,4 +146,5 @@ def webscraper_app():
             )
 
         else:
-            st.error("No data found. Please select at least one company.")
+            st.error("No data found.")
+           
