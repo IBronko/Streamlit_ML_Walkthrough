@@ -5,6 +5,7 @@ from apps.start import start_app
 from apps.webscraper import webscraper_app
 from apps.eda import eda_app
 from apps.training import training_app
+from apps.predictions import prediction_app
 
 st.set_page_config(
      page_title="ML Walkthrough Project",
@@ -29,7 +30,7 @@ for status in button_status_list:
         st.session_state[status] = False
 
 st.sidebar.title("End to end ML project")
-page = st.sidebar.selectbox("Navigation", ("Project Description", "Data Acquisition", "EDA", "Model Training"))
+page = st.sidebar.selectbox("Navigation", ("Project Description", "Data Acquisition", "EDA", "Model Training", "Make predictions"))
 
 #####################################
 # Display lottie file 
@@ -67,3 +68,5 @@ elif page == "EDA":
     eda_app()
 elif page == "Model Training":
     training_app()
+elif page == "Make predictions":
+    prediction_app()

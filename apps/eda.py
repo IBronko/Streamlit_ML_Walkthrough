@@ -3,7 +3,7 @@
 ##########################
 
 import streamlit as st
-from apps.helper_functions import *
+from apps.eda_helper_functions import *
 
 
 def eda_app():
