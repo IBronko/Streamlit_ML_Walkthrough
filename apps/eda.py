@@ -100,10 +100,10 @@ def eda_app():
         
         with st.expander("Notes"):
             st.markdown("""
-                        - Every column with a missing value count above 500 has been removed
-                        - The remaining missing values will be taken care of (imputed) in the model pipeline later on
-                        - The last column of the table holds the encoded target variable called 'overall_number'
-                        - Comments have not been translated, as they will not be considered for the model
+                        - :scissors: Every column with a missing value count above 500 has been removed
+                        - :construction: The remaining missing values will be taken care of (imputed) in the model pipeline later on
+                        - :checkered_flag: The last column of the table holds the encoded target variable called 'overall_number'
+                        - :x: Comments have not been translated, as they will not be considered for the model
                         """)
         
     elif step == "Summary statistics":
@@ -117,11 +117,11 @@ def eda_app():
         
         with st.expander("Notes"):
             st.markdown("""
-                        - __Target (dependent) variable__: 
+                        - :checkered_flag: __Target (dependent) variable__: 
                         'overall_number' is a binary variable which can either be __1__ (employer recommended) or __0__ (employer not recommended). 
-                        - __Feature (independent) variables__: 
+                        - :clipboard: __Feature (independent) variables__: 
                         Employees gave a ranking score between 1 (low) and 5 (high) for each feature. As the scale of measurement is __ordinal__ 'mean' and 'std' have to be taken with a grain of salt.
-                        - We need to work with __visualizations__ to get a better intuition for the data. 
+                        - :bar_chart: We need to work with __visualizations__ to get a better intuition for the data. 
                         
                         """)
             st.caption("Select from the visualization options at the top.")
@@ -225,6 +225,7 @@ def eda_app():
             st.markdown("""
                         __User tip__: Try out different combinations of features.
                         - This is a great way to get an intution of the association between two features
+                        - The benefit of scatter plots gets even more obvious when working with continuous data (rather than discrete values like in this case)
                         - Dark circles respresent the combinations where employees have recommended an employer
                         - As one would expect, a large fraction of dark circles (but not all) are located at or above the main diagonal  
                         """)    
