@@ -54,6 +54,7 @@ with st.sidebar:
         )
 
     st.markdown("Code: [GitHub](https://github.com/IBronko/Streamlit_ML_Walkthrough.git)")
+    st.markdown("Work in progress...")
     #st.write(st.session_state)
 
 #####################################

@@ -127,7 +127,7 @@ def webscraper_app():
 
             st.dataframe(df)
             st.text(f"Number of columns: {df.shape[1]}\nNumber of rows (samples): {df.shape[0]}")
-            st.caption("The result size has been limited to 10 samples per selected company.")
+            st.caption("The result size has been limited to 10 samples per selected company. For the subsequent procedure, the data of the German Dax 40 companies will be used.")
 
             #################### 
             # Download csv file
