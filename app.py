@@ -54,7 +54,7 @@ with st.sidebar:
         )
 
     st.markdown("Code: [GitHub](https://github.com/IBronko/Streamlit_ML_Walkthrough.git)")
-    st.write(st.session_state)
+    #st.write(st.session_state)
 
 #####################################
 # Import apps
