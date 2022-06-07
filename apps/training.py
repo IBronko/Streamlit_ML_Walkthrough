@@ -120,10 +120,18 @@ def training_app():
         
         log_pipeline = LogPipe().pipe(data)
         
+        st.markdown("""
+                    Cross validation strategy:
+                    - Only train set is used
+                    - Number of folds: 10
+                    - Splits: Stratified
+                    """)
+        
         def change_status_log_training():
           st.session_state.start_log_training = True 
 
-        start_log_training_button = st.button("Start training and score model", on_click=change_status_log_training)  
+        
+        start_log_training_button = st.button("Start training and cross validation", on_click=change_status_log_training) 
           
         if start_log_training_button:
           with st.spinner('Training started...'):
