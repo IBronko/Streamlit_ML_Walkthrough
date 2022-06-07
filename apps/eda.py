@@ -237,10 +237,11 @@ def eda_app():
         ####################################
         st.header("Word cloud")
         
-        st.pyplot(plot_wordcloud(df_clean), clear_figure=True)
-        
-        with st.expander("Notes"):
-            st.markdown("""
-                            This was just for fun... 
-                            The word cloud is based on simple word counts (and removal of stop words) of the comments column and it was too tedious to translate to english...
-                            """)  
+        with st.spinner("Word cloud in the making..."):
+            st.pyplot(plot_wordcloud(df_clean), clear_figure=True)
+            
+            with st.expander("Notes"):
+                st.markdown("""
+                                This was just for fun... 
+                                The word cloud is based on simple word counts (and removal of stop words) of the comments column and it was too tedious to translate to english...
+                                """)  
