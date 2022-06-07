@@ -224,7 +224,7 @@ def eda_app():
         with st.expander("Notes"):
             st.markdown("""
                         __User tip__: Try out different combinations of features.
-                        - This is a great way to get an intution of the association between two features
+                        - This is a great way to get an intuition of the association between two features
                         - The benefit of scatter plots gets even more obvious when working with continuous data (rather than discrete values like in this case)
                         - Dark circles respresent the combinations where employees have recommended an employer
                         - As one would expect, a large fraction of dark circles (but not all) are located at or above the main diagonal  

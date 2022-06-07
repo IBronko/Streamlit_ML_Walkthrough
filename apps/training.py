@@ -131,10 +131,10 @@ def training_app():
           st.session_state.start_log_training = True 
 
         
-        start_log_training_button = st.button("Start training and cross validation", on_click=change_status_log_training) 
+        start_log_training_button = st.button("Start cross validation", on_click=change_status_log_training) 
           
         if start_log_training_button:
-          with st.spinner('Training started...'):
+          with st.spinner('Cross validation started...'):
             time.sleep(2)
             scoring = ["accuracy", "balanced_accuracy"]
             cv_result = cross_validate(log_pipeline, data_train, target_train, cv=10, scoring=scoring)

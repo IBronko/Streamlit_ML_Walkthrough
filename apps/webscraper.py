@@ -13,7 +13,7 @@ def webscraper_app():
     
     st.title("Data Acquisition")
 
-    st.write("""This little script demonstrates how to run a Beautiful 
+    st.write("""This script demonstrates how to run a Beautiful 
              Soup webscraper to collect publicly available data for non-commercial purposes
              from an employer review platform.""")
 
