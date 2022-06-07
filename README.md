@@ -8,6 +8,12 @@ Based on certain questions about an employer, can we predict if employees will r
 
 ![project_overview](https://user-images.githubusercontent.com/67829673/172122063-136b328a-f501-4f2f-8850-6c4b16fd093a.png)
 
+## Run streamlit app
+
+1. Clone repository to your machine
+2. Create virtual environment (e.g. with pipenv)
+3. Install dependencies in virtual environment (see Pipfile)
+4. Start app with __"streamlit run app.py"__
 
 Work in progress...
 
