@@ -23,7 +23,7 @@ st.set_page_config(
 # Initialize default session states
 #####################################
 
-button_status_list = ["start_scraping_button"]
+button_status_list = ["start_scraping_button", "start_dummy_training_button"]
 
 for status in button_status_list:
     if status not in st.session_state:
