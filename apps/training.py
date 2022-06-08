@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 import time
 from apps.training_helper_functions import *
 from apps.eda_helper_functions import load_cleaned_data
@@ -128,7 +130,7 @@ def training_app():
                     """)
         
         def change_status_log_training():
-          st.session_state.start_log_training = True 
+          st.session_state.start_log_training_button = True 
 
         
         start_log_training_button = st.button("Start cross validation", on_click=change_status_log_training) 
@@ -148,3 +150,39 @@ def training_app():
             with st.expander("Logistic Regression Pipeline code details"):
                 st.code(log_pipeline, language="python")
                 
+    if model_step == "Model Evaluation":
+        ######################################
+        # Model Evaluation
+        ######################################
+        
+        st.subheader("Model Evaluation")
+        st.write("""
+                The model has not seen the test data yet. It is now used to evaluate how good it performs on unseen data ("generalization performance").
+                """)
+        
+        def change_status_log_evaluation():
+          st.session_state.start_log_evaluation_button = True 
+
+        
+        start_log_evaluation_button = st.button("Start Evaluation", on_click=change_status_log_evaluation)
+        
+        if start_log_evaluation_button:
+          with st.spinner('Model is getting trained...'):
+            time.sleep(2)
+            
+            final_pipeline = LogPipe().pipe(data)
+            final_pipeline.fit(data_train, target_train)
+            predictions = final_pipeline.predict(data_test)
+            score = accuracy_score(target_test, predictions)
+            score2 = balanced_accuracy_score(target_test, predictions)
+            
+            st.success('Model has been trained and evaluated.')
+            
+            st.write(f"Accuracy score on test set: {score*100:.0f}%")
+            st.write(f"Balanced accuracy score on test set: {score2*100:.0f}%")
+            
+            target_names = ['recommended', 'not recommended']
+            
+            st.text((classification_report(target_test, predictions, target_names=target_names)))
+            
+            
