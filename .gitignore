@@ -7,3 +7,12 @@ notebooks/eda/.ipynb_checkpoints/basic_data_cleaning_and_eda-checkpoint.ipynb
 notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb
 notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb
 notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb
+apps/__pycache__/eda.cpython-310.pyc
+apps/__pycache__/predictions.cpython-310.pyc
+apps/__pycache__/start.cpython-310.pyc
+apps/__pycache__/eda_helper_functions.cpython-310.pyc
+apps/__pycache__/training_helper_functions.cpython-310.pyc
+apps/__pycache__/training.cpython-310.pyc
+apps/__pycache__/webscraper.cpython-310.pyc
+data/__pycache__/stop_words.cpython-310.pyc
+notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb

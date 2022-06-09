@@ -1,12 +1,11 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import time
 from apps.training_helper_functions import *
 from apps.eda_helper_functions import load_cleaned_data
 from sklearn.model_selection import train_test_split, cross_validate
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, classification_report, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn import set_config
 set_config(display="text") #/diagram 
 
@@ -93,12 +92,11 @@ def training_app():
             
             with st.spinner('Training started...'):
               time.sleep(2)
-              score = accuracy_score(target_test, dummy_pipe_predictions)
-              score2 = balanced_accuracy_score(target_test, dummy_pipe_predictions)
+              dummy_accuracy, dummy_bal_accuracy, _, _ = evaluate(target_test, dummy_pipe_predictions)
               st.success('Dummy classifier has been trained and evaluated.')
               
-              st.write(f"Accuracy score on test set: {score*100:.0f}%")
-              st.write(f"Balanced accuracy score on test set: {score2*100:.0f}%")
+              st.write(f"Accuracy score on test set: {dummy_accuracy*100:.0f}%")
+              st.write(f"Balanced accuracy score on test set: {dummy_bal_accuracy*100:.0f}%")
               
               with st.expander("Dummy Pipeline code details"):
                 st.code(dummy_pipeline, language="python")
@@ -167,22 +165,36 @@ def training_app():
         start_log_evaluation_button = st.button("Start Evaluation", on_click=change_status_log_evaluation)
         
         if start_log_evaluation_button:
-          with st.spinner('Model is getting trained...'):
+          with st.spinner('Model is getting trained and evaluated...'):
             time.sleep(2)
             
             final_pipeline = LogPipe().pipe(data)
             final_pipeline.fit(data_train, target_train)
             predictions = final_pipeline.predict(data_test)
-            score = accuracy_score(target_test, predictions)
-            score2 = balanced_accuracy_score(target_test, predictions)
+            accuracy, _, precision, recall = evaluate(target_test, predictions) 
             
             st.success('Model has been trained and evaluated.')
             
-            st.write(f"Accuracy score on test set: {score*100:.0f}%")
-            st.write(f"Balanced accuracy score on test set: {score2*100:.0f}%")
+            st.write(f"Accuracy score on test set: {accuracy*100:.0f}%")
+            st.caption("Accuracy = (TP + TN) / Total")
+            st.write(f"Precision score on test set: {precision*100:.0f}%")
+            st.caption("Precision = TP / (TP + FP)")
+            st.write(f"Recall score on test set: {recall*100:.0f}%")
+            st.caption("Recall = TP / (TP + FN)")
             
-            target_names = ['recommended', 'not recommended']
+            target_names = ['not recommended', 'recommended']
             
-            st.text((classification_report(target_test, predictions, target_names=target_names)))
+            plt.figure(figsize=(5, 5))
+            cm_plot = ConfusionMatrixDisplay.from_estimator(
+            final_pipeline,
+            data_test,
+            target_test,
+            display_labels = target_names,
+            cmap=plt.cm.Blues,
+            )
+            cm_plot.ax_.set_title("Confusion matrix")
+            st.pyplot(plt)
+            plt.close()
+            
             
             
