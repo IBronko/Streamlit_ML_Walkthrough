@@ -7,17 +7,17 @@ from apps.eda import eda_app
 from apps.training import training_app
 from apps.predictions import prediction_app
 
-st.set_page_config(
-     page_title="ML Walkthrough Project",
-     page_icon="🧊",
-     layout="wide",
-     initial_sidebar_state="expanded",
-     menu_items={
-         'Get Help': 'https://github.com/IBronko/Streamlit_ML_Walkthrough',
-         'Report a bug': "https://github.com/IBronko/Streamlit_ML_Walkthrough",
-         'About': "# This is a personal project."
-     }
- )
+# st.set_page_config(
+#      page_title="ML Walkthrough Project",
+#      page_icon="🧊",
+#      layout="wide",
+#      initial_sidebar_state="expanded",
+#      menu_items={
+#          'Get Help': 'https://github.com/IBronko/Streamlit_ML_Walkthrough',
+#          'Report a bug': "https://github.com/IBronko/Streamlit_ML_Walkthrough",
+#          'About': "# This is a personal project."
+#      }
+#  )
 
 #####################################
 # Initialize default session states

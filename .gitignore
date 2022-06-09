@@ -16,3 +16,5 @@ apps/__pycache__/training.cpython-310.pyc
 apps/__pycache__/webscraper.cpython-310.pyc
 data/__pycache__/stop_words.cpython-310.pyc
 notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb
+notebooks/model/sklearn_model.ipynb
+notebooks/model/.ipynb_checkpoints/sklearn_model-checkpoint.ipynb
