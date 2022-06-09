@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from joblib import dump, load
+import time
 
 def prediction_app():
 
@@ -43,18 +44,21 @@ def prediction_app():
         new_input = pd.DataFrame([new_input], columns=features)
         #st.write(new_input)
         
-        saved_model = load('model/model.joblib') 
+        with st.spinner('Prediction started...'):
+            time.sleep(2)
         
-        st.subheader("Model prediction")
-        
-        if int(saved_model.predict(new_input)) == 1:
-            st.balloons()
-            st.markdown("Recommended :thumbsup:")
+            saved_model = load('model/model.joblib') 
             
-        elif int(saved_model.predict(new_input)) == 0:
-            st.write("Not Recommended :thumbsdown:")
+            st.subheader("Model prediction")
             
-        st.subheader("Probability estimates")
-        #st.write(saved_model.predict_proba(new_input))
-        st.write(f"Recommended: {saved_model.predict_proba(new_input)[0][1]*100:.2f}%")
-        st.write(f"Not recommended: {saved_model.predict_proba(new_input)[0][0]*100:.2f}%")
+            if int(saved_model.predict(new_input)) == 1:
+                st.balloons()
+                st.markdown("Recommended :thumbsup:")
+                
+            elif int(saved_model.predict(new_input)) == 0:
+                st.write("Not Recommended :thumbsdown:")
+                
+            st.subheader("Probability estimates")
+            #st.write(saved_model.predict_proba(new_input))
+            st.write(f"Recommended: {saved_model.predict_proba(new_input)[0][1]*100:.2f}%")
+            st.write(f"Not recommended: {saved_model.predict_proba(new_input)[0][0]*100:.2f}%")
