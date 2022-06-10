@@ -1,5 +1,8 @@
 # Machine Learning process walkthrough
 
+## Check out deployed app
+https://share.streamlit.io/ibronko/streamlit_ml_walkthrough/app.py
+
 ## Project description
 
 The goal of this project is to build and deploy a predictive binary classification model to answer the following question:
