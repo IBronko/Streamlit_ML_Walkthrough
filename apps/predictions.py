@@ -6,7 +6,7 @@ import time
 def prediction_app():
 
     st.title("Make predictions")
-    st.write("Time to make some predictions. Try different combinations and see, what the model predicts.")
+    st.write("Time to make some predictions. Some features seem to be more important to employees than others. Try different combinations and see, what the model predicts.")
     
     features = ['interesting_tasks', 
                 'equality',
@@ -42,7 +42,6 @@ def prediction_app():
     if submitted:
         new_input = [button_0, button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, button_10, button_11]
         new_input = pd.DataFrame([new_input], columns=features)
-        #st.write(new_input)
         
         with st.spinner('Prediction started...'):
             time.sleep(2)
@@ -52,11 +51,10 @@ def prediction_app():
             st.subheader("Model prediction")
             
             if int(saved_model.predict(new_input)) == 1:
-                st.balloons()
                 st.markdown("Recommended :thumbsup:")
                 
             elif int(saved_model.predict(new_input)) == 0:
-                st.write("Not Recommended :thumbsdown:")
+                st.markdown("Not Recommended :thumbsdown:")
                 
             st.subheader("Probability estimates")
             #st.write(saved_model.predict_proba(new_input))

@@ -10,8 +10,8 @@ def start_app():
             """)
     
     st.write("""
-            Based on certain questions about an employer, 
-            can we predict if employees will recommend an employer or not?
+            What is particularly important to employees about their employer so that they recommend it to others?
             """)
     
+    st.subheader("Project Roadmap")
     st.image("images/project_overview.png")
