@@ -1,7 +1,8 @@
 # Machine Learning process walkthrough
 
 ## Check out deployed app
-https://share.streamlit.io/ibronko/streamlit_ml_walkthrough/app.py
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/ibronko/streamlit_ml_walkthrough/app.py)
 
 ## Project description
 
